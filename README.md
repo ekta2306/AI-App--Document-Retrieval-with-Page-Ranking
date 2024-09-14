@@ -171,7 +171,11 @@ python 21BCT0321_ML\main.py
 ```bash
 curl http://127.0.0.1:5000/health
 ```
-###Search:
+### Search:
 ```bash
 curl "http://127.0.0.1:5000/search?user_id=<user_name>"
+```
+### Search with keyword:
+```bash
+curl "http://127.0.0.1:5000/search?user_id=<user_name>&text=<keyword>"
 ```
