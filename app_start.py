@@ -32,7 +32,7 @@ print(f"users_collection: {type(users_collection)}")
 # Logging setup
 logging.basicConfig(filename="api.log", level=logging.INFO)
 
-# Scraping function (you can add your scraping logic here)
+# Scraping function 
 def scrape_articles():
     while True:
         articles = [
@@ -49,7 +49,6 @@ def before_request():
     global initialized
     if not initialized:
         print("Running setup for the first request")
-        # Put your initialization code here
         thread = threading.Thread(target=scrape_articles, daemon=True)
         thread.start()
         initialized = True
@@ -121,11 +120,9 @@ def search():
     threshold = float(request.args.get('threshold', 0.5))
 
     articles_collection.create_index([('content', 'text')])
-    # Fetch documents from the MongoDB collection
+    # Fetch documents from the MongoDB collection based on the keyword 'text'
     search_results = list(articles_collection.find({"$text": {"$search": text}}))
     search_results = convert_objectid_to_str(search_results)
-    # Search MongoDB articles collection
-    #search_results = list(articles_collection.find())
     
     # Apply BM25 ranking algorithm
     ranked_results = bm25_ranking(search_results, text)
@@ -136,7 +133,7 @@ def search():
     inference_time = time.time() - start_time
     logging.info(f"User {user_id} made a request. Inference time: {inference_time:.2f} seconds.")
 
-    return jsonify({"results": ranked_results, "inference_time": inference_time})
+    return jsonify({"results": filtered_results, "inference_time": inference_time})
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0",port=5000)
