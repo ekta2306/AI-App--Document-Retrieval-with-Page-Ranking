@@ -18,4 +18,7 @@ def get_mongo_client():
 def get_database():
     # Access the database and collection
     client=get_mongo_client()
+    # Access the database and collection
+    users_collection = client.users
+    articles_collection = client.articles
     return client['DocumentsTrial']  # Replace with your database name
