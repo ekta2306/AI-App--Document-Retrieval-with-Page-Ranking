@@ -158,12 +158,12 @@ git clone https://github.com/ekta2306/21BCT0321_ML.git
 ```
 Install the required packages:
 ```bash
-pip install -r requirements.txt
+pip install -r 21BCT0321_ML\requirements.txt
 ```
 Configure MongoDB connection in db.py by providing your MongoDB Atlas connection string.
 Run the application:
 ```bash
-python main.py
+python 21BCT0321_ML\main.py
 ```
 
 ## Using the API
