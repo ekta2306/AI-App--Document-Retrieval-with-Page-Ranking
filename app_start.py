@@ -133,7 +133,7 @@ def search():
     inference_time = time.time() - start_time
     logging.info(f"User {user_id} made a request. Inference time: {inference_time:.2f} seconds.")
 
-    return jsonify({"results": filtered_results, "inference_time": inference_time})
+    return jsonify({"results": ranked_results, "inference_time": inference_time})
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0",port=5000)
