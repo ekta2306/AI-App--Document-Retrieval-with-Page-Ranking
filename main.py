@@ -5,7 +5,7 @@ import os
 
 #if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
     # Run the external Python file to install packages
-subprocess.run(['python', 'ML-copy\installations.py'], check=True)
+#subprocess.run(['python', 'ML-copy\installations.py'], check=True)
 
     # Now import and use the installed packages
     #import query_access

@@ -1,0 +1,11 @@
+requests
+elasticsearch
+numpy
+transformers
+pymongo
+fastapi
+uvicorn
+nltk
+scikit-learn
+Flask
+flask_limiter
