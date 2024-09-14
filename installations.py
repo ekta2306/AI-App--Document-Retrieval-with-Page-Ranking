@@ -1,1 +1,0 @@
-pip install requests elasticsearch numpy transformers "pymongo[srv]" fastapi uvicorn pymongo nltk scikit-learn
