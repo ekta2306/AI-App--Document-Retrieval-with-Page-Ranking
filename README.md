@@ -86,6 +86,8 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
+Here, the query and query_access scripts are supporting scripts that can be used when implementing distributed caching. The system currently runs without the need for these two scripts.
+
 ### Endpoints
 
 - **`/health`**: Returns a random response to check if the API is active.
@@ -97,6 +99,10 @@ if __name__ == "__main__":
 
 ### BM25 Ranking Algorithm
 BM25 (Best Matching 25) is a term-based ranking function used for retrieving relevant documents in response to a query. It calculates the relevance score by analyzing term frequency, inverse document frequency, and length of the document. BM25 is widely used due to its effectiveness in producing accurate search results.
+
+The below image shows an example of a search query, where two articles are matched to a keyword and are ranked on the basis of BM25 score.
+![image](https://github.com/user-attachments/assets/db547be5-68b7-4b33-96e9-d36066d34045)
+
 
 ## Future Improvements
 
