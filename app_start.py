@@ -117,7 +117,7 @@ def search():
 
     text = request.args.get('text')
     top_k = int(request.args.get('top_k', 5))
-    threshold = float(request.args.get('threshold', 0.1))
+    threshold = float(request.args.get('threshold', 0.5))
 
     articles_collection.create_index([('content', 'text')])
     # Fetch documents from the MongoDB collection based on the keyword 'text'
