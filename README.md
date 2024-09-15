@@ -150,6 +150,58 @@ Using a distributed caching system (e.g., Redis or Memcached) could drastically 
 2. Scalability Enhancements
 By implementing horizontal scaling for both the database and the application, the system can handle more users and larger datasets. Additionally, the Flask app could be deployed using a production-grade server like Gunicorn or uWSGI for better performance and security.
 
+## Dockerizing the Flask Application
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port 5000 for Flask to be accessible
+EXPOSE 5000
+
+# Set environment variables
+ENV FLASK_APP=app_start.py
+ENV FLASK_ENV=development  # For production, set this to 'production'
+
+# Run Flask when the container launches
+CMD ["flask", "run", "--host=0.0.0.0"]
+```
+Build the Docker Image: Navigate to your project directory and run the following command to build the Docker image:
+```bash
+docker build -t flask-app:latest .
+```
+This command will create an image named flask-app using the instructions provided in the Dockerfile.
+
+Run the Docker Container: Once the image is built, you can run the container using:
+```bash
+docker run -p 5000:5000 flask-app
+```
+Stopping the Container
+To stop the container, press CTRL+C in the terminal where it is running. Alternatively, you can list and stop the container using Docker commands:
+
+List running containers:
+```bash
+docker ps
+```
+Stop the container:
+```bash
+docker stop <container_id>
+```
+Replace <container_id> with the ID of the running container, which you get from the docker ps command.
+
+### Future Improvements with Docker
+Using Docker Compose: If your application grows, you may want to use Docker Compose to run multiple services like MongoDB and Flask together. Docker Compose allows you to define and manage multi-container Docker applications more easily.
+
+Production Readiness: For production environments, you might want to use a WSGI server like gunicorn instead of the built-in Flask server, as it's better suited for handling multiple requests and scaling.
+
 ## Setup Instructions
 
 Clone the repository:
@@ -160,7 +212,16 @@ Install the required packages:
 ```bash
 pip install -r 21BCT0321_ML\requirements.txt
 ```
-Configure MongoDB connection in db.py by providing your MongoDB Atlas connection string.
+MongoDB Setup:
+Ensure you have a MongoDB instance running. You can either use a local MongoDB instance or a cloud MongoDB Atlas instance.
+Update the MongoDB connection string in db.py:
+```python
+from pymongo import MongoClient
+
+def get_mongo_client():
+    client = MongoClient("mongodb+srv://<username>:<password>@cluster_url/database_name")
+    return client
+```
 Run the application:
 ```bash
 python 21BCT0321_ML\main.py
