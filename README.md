@@ -1,5 +1,5 @@
 # AI Application
-##Document Retrieval System with Page Ranking for a Chat Application
+## Document Retrieval System with Page Ranking for a Chat Application
 
 ### Project Overview
 This project is an AI-powered document retrieval system that utilizes a Flask-based API for querying a MongoDB database. The system processes user queries, retrieves relevant documents, and ranks them using the BM25 page ranking algorithm. The backend is designed to handle user-specific queries with request throttling and session logging.
